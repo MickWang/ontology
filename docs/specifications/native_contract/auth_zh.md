@@ -98,7 +98,7 @@
 
 ## 合约示例(C#版)
 
-```json
+```
 using Neo.SmartContract.Framework;
 using Neo.SmartContract.Framework.Services.Neo;
 using Neo.SmartContract.Framework.Services.System;
