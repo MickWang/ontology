@@ -2,9 +2,9 @@
 
 * [背景](#背景)
 * [应用合约调用权限管理](#应用合约调用权限管理)
-* [AuthContract接口设计](#AuthContract接口设计)
+* [接口设计](#接口设计)
 * [使用流程](#使用流程)
-* [合约示例(C#版)](#合约示例(C#版))
+* [合约示例](#合约示例)
 
 
 ## 背景
@@ -25,7 +25,7 @@
 
 - 记录实体ONT ID的权限token（包含**有效时间**、**级别**、**角色**）列表，即`ontID -> [](role, expireTime, level)`。
 
-## AuthContract接口设计
+## 接口设计
 
 ### a. 设置应用合约管理员
 
@@ -96,7 +96,7 @@
 3. 合约管理者为OntID分配角色；
 4. 合约的具体函数在执行之前，可以首先验证合约调用者是否拥有调用的权限，即验证该调用者是否提供了token；验证通过之后，可以执行具体函数。
 
-## 合约示例(C#版)
+## 合约示例
 
 ```
 using Neo.SmartContract.Framework;
@@ -157,7 +157,7 @@ namespace Example
             param.adminOntID = (byte[]) args[0];
 
             _args[0] = Neo.SmartContract.Framework.Helper.Serialize(param);
-            byte[] ret = AuthContract("InitContractAdmin", _args);
+            byte[] ret = AuthContract("initContractAdmin", _args);
 
             return ret[0] == 1;
         }
